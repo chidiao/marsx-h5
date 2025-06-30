@@ -8,9 +8,15 @@ body {
 }
 
 #app {
-  max-width: 375px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
+}
+
+@media (width >= 40rem) {
+  #app {
+    max-width: 375px;
+  }
 }
 
 .download-button-container {
