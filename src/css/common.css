@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  max-width: 375px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.download-button-container {
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  padding: 0 24px;
+  background-color: rgb(255 255 255 / 90%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.download-button {
+  width: 100%;
+  height: 46px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #faa520 0%, #f4320e 100%);
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 46px;
+}

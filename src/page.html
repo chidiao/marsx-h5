@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>主页</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/page.css" />
+    <link rel="stylesheet" href="./css/post.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="top-bg"></div>
+
+      <div class="main">
+        <div class="avatar"></div>
+
+        <div style="padding: 10px 15px">
+          <div class="counts">
+            <div class="count">0</div>
+            <div class="count">0</div>
+            <div class="count">0</div>
+            <div class="count">0</div>
+            <div>关注</div>
+            <div>发帖</div>
+            <div>粉丝</div>
+            <div>获赞</div>
+          </div>
+
+          <div class="info">
+            <div class="nickname"></div>
+            <div class="uid"></div>
+            <div class="signature"></div>
+          </div>
+
+          <div class="tags"></div>
+
+          <!-- 分割线 -->
+          <div style="width: 100%; border-top: 1px solid #fff0e5; margin: 10px auto"></div>
+
+          <div class="tabs">
+            <div data-index="0" class="tab active">帖子</div>
+            <div data-index="1" class="tab">赞过</div>
+          </div>
+
+          <div>
+            <div class="posts active"></div>
+            <div class="likes"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- copy -->
+      <div class="download-button-container">
+        <div class="download-button" onclick="javascript:alert('敬请期待')">下载 MarsX AI 客户端</div>
+      </div>
+    </div>
+
+    <script src="./js/page.js"></script>
+    <script>
+      const userId = 10
+
+      initTabs()
+      getUserData(userId)
+      getUserPosts(userId)
+      getUserLikes(userId)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+.top-bg {
+  width: 100%;
+  height: 240px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.top-bg::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+}
+
+.main {
+  z-index: 9;
+  margin-top: -40px;
+  position: relative;
+  background: #fff;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.avatar {
+  width: 105px;
+  height: 105px;
+  border: 2px solid #ffffff;
+  background-color: #fff0e5;
+  background-position: center;
+  background-size: cover;
+  border-radius: 9999px;
+  position: absolute;
+  transform: translate(20px, -65px);
+}
+
+.counts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 60%;
+  margin-left: auto;
+  padding-bottom: 15px;
+}
+
+.counts > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666666;
+  font-size: 12px;
+}
+
+.counts .count {
+  font-size: 14px;
+  color: #000000;
+}
+
+.info {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 10px;
+}
+
+.info .nickname {
+  font-size: 20px;
+  color: #000000;
+}
+
+.info .uid {
+  font-size: 12px;
+  color: #666666;
+}
+
+.info .signature {
+  font-size: 14px;
+  color: #000000;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tags .tag {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 8px;
+  border-radius: 100px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 114, 0, 0.1);
+  font-size: 10px;
+  color: #666666;
+}
+
+.tags .tag.zodiac {
+  color: #ff7200;
+  background: rgba(255, 114, 0, 0.1);
+  border: none;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+}
+
+.tabs .tab {
+  padding: 6px 10px;
+  cursor: pointer;
+  position: relative;
+  color: #d1d1d1;
+}
+
+.tabs .tab.active {
+  color: #000000;
+}
+
+.tabs .tab::after {
+  content: '';
+  width: 20px;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  border-radius: 100px;
+  transform: translate(-50%, 0);
+  background: #ff7200;
+  opacity: 0;
+}
+
+.tabs .tab.active::after {
+  opacity: 1;
+}
+
+.posts,
+.likes {
+  display: none;
+  gap: 15px;
+}
+
+.posts.active,
+.likes.active {
+  display: grid;
+  gap: 15px;
+}
