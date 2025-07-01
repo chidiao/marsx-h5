@@ -1,0 +1,22 @@
+{
+  "name": "marsx-h5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "repository": "git@github.com:chidiao/marsx-h5.git",
+  "author": "孙颖洲 <sunyz94123@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gulp watch",
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.7",
+    "gulp": "^5.0.1",
+    "gulp-less": "^5.0.0",
+    "gulp-postcss": "^10.0.0",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1"
+  }
+}
