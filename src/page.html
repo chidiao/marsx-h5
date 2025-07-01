@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>主页</title>
+    <title>个人主页</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
 
@@ -54,15 +54,14 @@
         </div>
       </div>
 
-      <!-- copy -->
-      <div class="download-button-container">
-        <div class="download-button" onclick="javascript:alert('敬请期待')">下载 MarsX AI 客户端</div>
+      <div class="download-btn">
+        <div class="btn">下载 MarsX AI 客户端</div>
       </div>
     </div>
 
     <script src="./js/page.js"></script>
     <script>
-      const userId = 3606
+      const userId = getParams('id') ?? 3606
 
       initTabs()
       getUserData(userId)

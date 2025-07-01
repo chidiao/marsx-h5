@@ -15,13 +15,59 @@ const getPostData = (postId) => {
 }
 
 function createComment(comment) {
-  console.log(comment)
+  let subComments = ''
+
+  if (comment.replies.length > 0) {
+    const list = createSubComments(comment.replies)
+
+    subComments = `
+    <div class="sub-comments">
+      <div class="list">${list}</div>
+    </div>
+    `
+  }
+
+  return `
+  <div class="comment">
+    <img src="${comment.user_info.avatar_text}" class="user-avatar" />
+
+    <div class="right">
+      <div class="nickname">${comment.user_info.user_nickname}</div>
+      <div class="content">${comment.content}</div>
+    </div>
+  </div>
+
+  ${subComments}
+  `
 }
 
-function createComments(comments) {
-  comments.forEach((comment) => {
-    createComment(comment)
+function createSubComment(reply) {
+  const nickname = reply.user_info.user_nickname
+  const toNickname = reply.reply_to_user.user_nickname
+
+  return `
+  <div><span class="nickname">${nickname}</span>：<span class="content">${reply.content}</span></div>
+  `
+}
+
+function createSubComments(replies) {
+  let html = ''
+
+  replies.forEach((reply) => {
+    html += createSubComment(reply)
   })
+
+  return html
+}
+
+function createComments(commentsDom, comments) {
+  let html = ''
+
+  comments.forEach((comment) => {
+    html += createComment(comment)
+  })
+
+  commentsDom.innerHTML = html
 }
 
 const getPostComments = (postId) => {
@@ -34,6 +80,6 @@ const getPostComments = (postId) => {
   })
     .then((response) => response.json())
     .then(({ data }) => {
-      createComments(data)
+      createComments(document.querySelector('.comments'), data)
     })
 }

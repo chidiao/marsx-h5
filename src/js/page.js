@@ -1,3 +1,15 @@
+function onDownload() {
+  alert('敬请期待')
+}
+
+function getParams(name) {
+  const urlParams = new URLSearchParams(window.location.search)
+
+  return urlParams.get(name)
+}
+
+document.querySelector('.download-btn .btn').addEventListener('click', onDownload)
+
 function createTag(tag, isZodiac = false) {
   const tagElement = document.createElement('span')
   tagElement.textContent = tag

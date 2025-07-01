@@ -14,8 +14,10 @@
       <!-- 分割线 -->
       <div style="width: 100%; border-top: 1px solid #fff0e5; margin: 10px auto"></div>
 
-      <div class="comments">
-        
+      <div class="comments"></div>
+
+      <div class="download-btn">
+        <div class="btn">下载 MarsX AI 客户端</div>
       </div>
     </div>
 
@@ -23,7 +25,7 @@
     <script src="./js/page.js"></script>
     <script src="./js/post.js"></script>
     <script>
-      const postId = 12
+      const postId = getParams('id') ?? 12
 
       getPostData(postId).then((post) => {
         document.querySelector('.posts').innerHTML = createPost(post)
