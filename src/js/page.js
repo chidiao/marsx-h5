@@ -1,3 +1,41 @@
+function createTag(tag, isZodiac = false) {
+  const tagElement = document.createElement('span')
+  tagElement.textContent = tag
+  tagElement.className = isZodiac ? 'tag zodiac' : 'tag'
+
+  return tagElement
+}
+
+function setUserBackground(userData) {
+  const bgDom = document.querySelector('.top-bg')
+  bgDom.style.backgroundImage = `url('${userData.background_image_text}')`
+}
+
+function setUserCounts(userData) {
+  const countDoms = document.querySelectorAll('.count')
+  countDoms[0].innerHTML = userData.following_count
+  countDoms[1].innerHTML = userData.follower_count
+  countDoms[2].innerHTML = userData.post_count
+  countDoms[3].innerHTML = userData.total_likes_count
+}
+
+function setUserInfo(userData) {
+  const avatarDom = document.querySelector('.avatar')
+  avatarDom.style.backgroundImage = `url('${userData.avatar_text}')`
+
+  document.querySelector('.nickname').innerHTML = userData.user_nickname
+  document.querySelector('.uid').innerHTML = '火星身份证号：' + userData.uid
+  document.querySelector('.signature').innerHTML = userData.signature
+}
+
+function setUserTags(userData) {
+  const tagsDom = document.querySelector('.tags')
+  tagsDom.appendChild(createTag(userData.zodiac, true))
+  userData.tags.forEach((tag) => {
+    tagsDom.appendChild(createTag(tag))
+  })
+}
+
 const getUserData = (userId) => {
   fetch('https://h5-api.itopline.com/v1/circle/getUserProfile', {
     method: 'POST',
@@ -8,44 +46,14 @@ const getUserData = (userId) => {
   })
     .then((response) => response.json())
     .then(({ data }) => {
-      // bg
-      const bgDom = document.querySelector('.top-bg')
-      bgDom.style.backgroundImage = `url('${data.background_image_text}')`
-
-      // avatar
-      const avatarDom = document.querySelector('.avatar')
-      avatarDom.style.backgroundImage = `url('${data.avatar_text}')`
-
-      // counts
-      const countDoms = document.querySelectorAll('.count')
-      countDoms[0].innerHTML = data.following_count
-      countDoms[1].innerHTML = data.follower_count
-      countDoms[2].innerHTML = data.post_count
-      countDoms[3].innerHTML = data.total_likes_count
-
-      // info
-      document.querySelector('.nickname').innerHTML = data.user_nickname
-      document.querySelector('.uid').innerHTML = '火星身份证号：' + data.uid
-      document.querySelector('.signature').innerHTML = data.signature
-
-      // tags
-      const tagsDom = document.querySelector('.tags')
-
-      const tagElement = document.createElement('span')
-      tagElement.textContent = data.zodiac
-      tagElement.className = 'tag zodiac'
-      tagsDom.appendChild(tagElement)
-
-      data.tags.forEach((tag) => {
-        const tagElement = document.createElement('span')
-        tagElement.textContent = tag
-        tagElement.className = 'tag'
-        tagsDom.appendChild(tagElement)
-      })
+      setUserBackground(data)
+      setUserCounts(data)
+      setUserInfo(data)
+      setUserTags(data)
     })
 }
 
-const createPost = (post) => {
+function createPost(post) {
   let tags = ''
   let imgs = ''
 
@@ -80,6 +88,16 @@ const createPost = (post) => {
   `
 }
 
+function createPosts(postsDom, posts) {
+  let html = ''
+
+  posts.forEach((post) => {
+    html += createPost(post)
+  })
+
+  postsDom.innerHTML = html
+}
+
 const getUserPosts = (userId) => {
   fetch('https://h5-api.itopline.com/v1/circle/getUserPosts', {
     method: 'POST',
@@ -90,14 +108,7 @@ const getUserPosts = (userId) => {
   })
     .then((response) => response.json())
     .then(({ data }) => {
-      let html = ''
-
-      data.forEach((post) => {
-        html += createPost(post)
-      })
-
-      const postsDom = document.querySelector('.posts')
-      postsDom.innerHTML = html
+      createPosts(document.querySelector('.posts'), data)
     })
 }
 
@@ -111,14 +122,7 @@ const getUserLikes = (userId) => {
   })
     .then((response) => response.json())
     .then(({ data }) => {
-      let html = ''
-
-      data.forEach((post) => {
-        html += createPost(post)
-      })
-
-      const postsDom = document.querySelector('.likes')
-      postsDom.innerHTML = html
+      createPosts(document.querySelector('.likes'), data)
     })
 }
 

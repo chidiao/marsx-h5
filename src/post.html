@@ -4,8 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>帖子详情</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
-  <body></body>
+  <body>
+    <div class="page-wrapper" style="padding: 10px 15px">
+      <div class="posts active"></div>
+
+      <!-- 分割线 -->
+      <div style="width: 100%; border-top: 1px solid #fff0e5; margin: 10px auto"></div>
+
+      <div class="comments">
+        
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="./js/page.js"></script>
+    <script src="./js/post.js"></script>
+    <script>
+      const postId = 12
+
+      getPostData(postId).then((post) => {
+        document.querySelector('.posts').innerHTML = createPost(post)
+      })
+
+      getPostComments(postId)
+    </script>
+  </body>
 </html>
