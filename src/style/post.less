@@ -1,8 +1,12 @@
-.post-avatar {
-  width: 40px;
-  height: 40px;
+.post-avatar,
+.user-avatar {
+  --size: 40px;
+
+  width: var(--size);
+  height: var(--size);
   border-radius: 99px;
   flex-shrink: 0;
+  background: #faebe0;
 }
 
 .post-header {
@@ -16,16 +20,20 @@
 .post-right {
   display: grid;
   gap: 2px;
+
+  .nickname {
+    font-size: 14px;
+  }
 }
 
 .post-main {
-  padding: 0 8px 0 58px;
   display: grid;
   gap: 8px;
 }
 
 .post-content {
   font-size: 14px;
+  white-space: pre-line;
   /* padding: 8px; */
 }
 
@@ -91,13 +99,6 @@
   display: flex;
   gap: 10px;
 
-  .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 99px;
-    flex-shrink: 0;
-  }
-
   .right {
     display: grid;
     gap: 4px;
@@ -109,7 +110,7 @@
   }
 
   .content {
-    font-size: 16px;
+    font-size: 14px;
     color: #000000;
   }
 }
@@ -128,5 +129,9 @@
     padding: 10px 15px;
     display: grid;
     gap: 5px;
+  }
+
+  .more {
+    color: #9a9a9a;
   }
 }

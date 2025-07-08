@@ -29,7 +29,9 @@ function createComment(comment) {
 
   return `
   <div class="comment">
-    <img src="${comment.user_info.avatar_text}" class="user-avatar" />
+    <img src="${comment.user_info.avatar_text}" 
+      onerror="this.src='${DEFAULT_AVATAR}'; this.onerror=null;"
+      class="user-avatar" />
 
     <div class="right">
       <div class="nickname">${comment.user_info.user_nickname}</div>
@@ -51,11 +53,21 @@ function createSubComment(reply) {
 }
 
 function createSubComments(replies) {
+  const MAX_DISPLAY = 3
   let html = ''
 
-  replies.forEach((reply) => {
+  const displayedReplies = replies.slice(0, MAX_DISPLAY)
+  displayedReplies.forEach((reply) => {
     html += createSubComment(reply)
   })
+
+  if (replies.length > MAX_DISPLAY) {
+    html += `
+      <div class="more">
+        在APP内查看更多评论
+      </div>
+    `
+  }
 
   return html
 }

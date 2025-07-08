@@ -1,15 +1,3 @@
-function onDownload() {
-  alert('敬请期待')
-}
-
-function getParams(name) {
-  const urlParams = new URLSearchParams(window.location.search)
-
-  return urlParams.get(name)
-}
-
-document.querySelector('.download-btn .btn').addEventListener('click', onDownload)
-
 function createTag(tag, isZodiac = false) {
   const tagElement = document.createElement('span')
   tagElement.textContent = tag
@@ -77,18 +65,23 @@ function createPost(post) {
     imgs += `<img src="${img}" class="post-img " />`
   })
 
+  const content = post.content.replace(/\n/g, '<br>')
+
   return `
   <div class="post">
     <div class="post-header">
-      <img src="${post.user_info.avatar_text}" class="post-avatar " />
+      <img src="${post.user_info.avatar_text}" 
+        onerror="this.src='${DEFAULT_AVATAR}'; this.onerror=null;"
+        class="post-avatar" />
+
       <div class="post-right">
-        <div>${post.user_info.user_nickname}</div>
+        <div class="nickname">${post.user_info.user_nickname}</div>
         <div class="tags">${tags}</div>
       </div>
     </div>
 
     <div class="post-main">
-      <div class="post-content">${post.content}</div>
+      <div class="post-content">${content}</div>
       <div class="post-imgs">${imgs}</div>
       <div class="post-bottom">
         <div class="post-date">${post.created_at_text}</div>
